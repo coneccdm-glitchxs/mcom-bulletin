@@ -1,0 +1,46 @@
+[
+  {
+    "id": "pinned-ibps-po-2026",
+    "source": "Pinned — manually maintained",
+    "organisation": "IBPS — Institute of Banking Personnel Selection",
+    "post": "Probationary Officer / Management Trainee (CRP PO/MT-XVI)",
+    "qualification": "Any bachelor's degree (M.Com eligible), age 20-30",
+    "deadline": "Check ibps.in — annual cycle, applications typically open Jul, prelims Aug",
+    "link": "https://www.ibps.in",
+    "pinned": true,
+    "type": "exam"
+  },
+  {
+    "id": "pinned-ibps-clerk-2026",
+    "source": "Pinned — manually maintained",
+    "organisation": "IBPS — Institute of Banking Personnel Selection",
+    "post": "Clerk / Customer Service Associate (CRP CSA-XVI)",
+    "qualification": "Any bachelor's degree (M.Com eligible)",
+    "deadline": "Notification typically released August, prelims October",
+    "link": "https://www.ibps.in",
+    "pinned": true,
+    "type": "exam"
+  },
+  {
+    "id": "pinned-kpsc-fda-sda",
+    "source": "Pinned — manually maintained",
+    "organisation": "KPSC — Karnataka Public Service Commission",
+    "post": "First Division Assistant / Second Division Assistant (FDA/SDA)",
+    "qualification": "Graduate (M.Com eligible) — regularly hires into Accounts/Treasury/Audit depts",
+    "deadline": "Notification awaited — register on portal now",
+    "link": "https://kpsconline.karnataka.gov.in",
+    "pinned": true,
+    "type": "exam"
+  },
+  {
+    "id": "pinned-kea-vao",
+    "source": "Pinned — manually maintained",
+    "organisation": "KEA — Karnataka Examinations Authority",
+    "post": "Village Accountant (VAO)",
+    "qualification": "12th pass minimum; graduates/PG incl. M.Com also apply",
+    "deadline": "Check cetonline.karnataka.gov.in/kea for current window",
+    "link": "https://cetonline.karnataka.gov.in/kea",
+    "pinned": true,
+    "type": "exam"
+  }
+]
