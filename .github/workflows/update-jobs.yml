@@ -1,0 +1,36 @@
+name: Update M.Com Job Bulletin
+
+on:
+  schedule:
+    # Runs at 02:00 UTC = 07:30 AM IST every day
+    - cron: '0 2 * * *'
+  workflow_dispatch: {}   # lets you trigger it manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update-jobs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        run: python scraper.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name "mcom-bulletin-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/jobs.json
+          git diff --quiet --cached || git commit -m "Daily update: $(date -u +'%Y-%m-%d')"
+          git push
