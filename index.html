@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M.Com Karnataka Job Bulletin — Justin's Ad Center</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --paper: #f1ead7;
+    --paper-dark: #e7ddc4;
+    --ink: #1e2a3a;
+    --ink-soft: #3d4a5c;
+    --rule: #c9bd9c;
+    --stamp-red: #a3382c;
+    --seal-gold: #8a6d2f;
+    --green-open: #3c5a3e;
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin:0;
+    background: var(--paper);
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.015) 0px, rgba(0,0,0,0.015) 1px, transparent 1px, transparent 3px);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height:1.5;
+  }
+
+  a { color: inherit; }
+
+  .wrap{ max-width: 900px; margin: 0 auto; padding: 0 20px 80px; }
+
+  header.masthead{
+    border-bottom: 4px double var(--ink);
+    padding: 28px 0 14px;
+    text-align:center;
+  }
+  .kicker{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color: var(--ink-soft);
+  }
+  h1.title{
+    font-family:'Bitter', serif;
+    font-weight:900;
+    font-size: clamp(32px, 6vw, 54px);
+    margin: 6px 0 4px;
+    letter-spacing: -0.5px;
+  }
+  .subtitle{
+    font-family:'Bitter', serif;
+    font-style: italic;
+    font-size:15px;
+    color: var(--ink-soft);
+  }
+  .masthead-meta{
+    display:flex;
+    justify-content:space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.5px;
+    color: var(--ink-soft);
+    border-top:1px solid var(--rule);
+    margin-top:14px;
+    padding-top:8px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .edition-note{
+    margin: 22px 0 8px;
+    padding: 14px 18px;
+    background: var(--paper-dark);
+    border-left: 3px solid var(--seal-gold);
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+  .edition-note strong{ color: var(--ink); }
+
+  .status-banner{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    padding: 8px 14px;
+    margin: 14px 0;
+    border: 1px dashed var(--rule);
+    display:none;
+  }
+  .status-banner.show{ display:block; }
+  .status-banner.error{ border-color: var(--stamp-red); color: var(--stamp-red); }
+
+  .section{ margin-top: 46px; }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom:6px;
+    margin-bottom: 18px;
+  }
+  .section-head h2{
+    font-family:'Bitter', serif;
+    font-weight:700;
+    font-size:22px;
+    margin:0;
+    text-transform:uppercase;
+    letter-spacing: 0.5px;
+  }
+  .section-head .count{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color: var(--ink-soft);
+  }
+
+  .listing{
+    position:relative;
+    border: 1px solid var(--rule);
+    background: rgba(255,255,255,0.35);
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+  .listing-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .listing-org{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color: var(--seal-gold);
+  }
+  .listing-title{
+    font-family:'Bitter', serif;
+    font-weight:700;
+    font-size: 19px;
+    margin: 2px 0 8px;
+  }
+  .listing-body{ font-size: 14px; color: var(--ink-soft); }
+  .listing-body p{ margin: 4px 0; }
+  .tag{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.5px;
+    padding: 2px 8px;
+    border:1px solid currentColor;
+    border-radius: 2px;
+    margin-left:6px;
+  }
+  .tag.exam{ color: var(--seal-gold); }
+  .tag.pinned{ color: var(--ink-soft); }
+
+  .stamp{
+    position:absolute;
+    top: 14px;
+    right: 16px;
+    transform: rotate(-8deg);
+    border: 2.5px solid var(--stamp-red);
+    color: var(--stamp-red);
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 3px;
+    opacity: 0.9;
+    background: rgba(163,56,44,0.05);
+  }
+
+  .listing-links{ margin-top: 10px; font-size:13px; }
+  .listing-links a{
+    color: var(--green-open);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+    margin-right: 16px;
+    font-weight:500;
+  }
+  .listing-links a:hover{ color: var(--stamp-red); }
+
+  .deadline{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color: var(--ink);
+    font-weight:500;
+  }
+
+  .portal-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+    gap: 12px;
+  }
+  .portal{
+    border:1px dashed var(--rule);
+    padding: 12px 14px;
+  }
+  .portal .p-name{ font-weight:600; font-size:14px; }
+  .portal .p-desc{ font-size:12.5px; color: var(--ink-soft); margin:3px 0 6px; }
+  .portal a{ font-size:12.5px; text-decoration:underline; text-decoration-style:dotted; color: var(--green-open); word-break:break-all; }
+
+  footer{
+    margin-top: 60px;
+    border-top: 4px double var(--ink);
+    padding-top: 18px;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing:0.5px;
+  }
+  footer .brand{ font-family:'Bitter', serif; font-weight:700; font-size:14px; color:var(--ink); letter-spacing:0; }
+
+  .skeleton{
+    height: 90px;
+    background: linear-gradient(90deg, rgba(0,0,0,0.03) 25%, rgba(0,0,0,0.06) 37%, rgba(0,0,0,0.03) 63%);
+    background-size: 400% 100%;
+    animation: shimmer 1.4s ease infinite;
+    margin-bottom: 14px;
+  }
+  @keyframes shimmer{ 0%{background-position:100% 0;} 100%{background-position:0 0;} }
+
+  @media (max-width:600px){
+    .listing-top{ flex-direction:column; }
+    .stamp{ position:static; display:inline-block; transform:rotate(-3deg); margin-bottom:8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">A Justin's Ad Center Daily Publication</div>
+    <h1 class="title">The M.Com Bulletin</h1>
+    <div class="subtitle">Government &amp; Public Sector Openings for Commerce Postgraduates — Karnataka Edition</div>
+    <div class="masthead-meta">
+      <span id="edition-date">Loading edition date…</span>
+      <span>PERMANENT POSTS · EXAM &amp; INTERVIEW ROUTES</span>
+    </div>
+  </header>
+
+  <div class="edition-note">
+    <strong>This page updates itself.</strong> A script checks the sources below once a day and rewrites <code>data/jobs.json</code>; this page simply reads that file every time you open it. If a source's listing hasn't changed since yesterday, its old entries are kept rather than dropped — always confirm deadlines on the organisation's own site before applying.
+  </div>
+
+  <div class="status-banner" id="statusBanner"></div>
+
+  <div class="section">
+    <div class="section-head"><h2>Pinned — Watch These</h2><span class="count">manually maintained, high-value cycles</span></div>
+    <div id="pinnedList"><div class="skeleton"></div><div class="skeleton"></div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><h2>Latest Checked Listings</h2><span class="count" id="liveCount">fetching…</span></div>
+    <div id="liveList"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><h2>Sources Checked</h2><span class="count">edited daily by the workflow — add more in scraper.py</span></div>
+    <div class="portal-grid">
+      <div class="portal">
+        <div class="p-name">Karnataka Public Service Commission</div>
+        <div class="p-desc">Official state government recruitment body — FDA/SDA, KAS, Group B &amp; C.</div>
+        <a href="https://kpsc.kar.nic.in" target="_blank" rel="noopener">kpsc.kar.nic.in</a>
+      </div>
+      <div class="portal">
+        <div class="p-name">Karnataka Examinations Authority</div>
+        <div class="p-desc">Village Accountant, Police Constable, and other state exam recruitments.</div>
+        <a href="https://cetonline.karnataka.gov.in/kea" target="_blank" rel="noopener">cetonline.karnataka.gov.in/kea</a>
+      </div>
+      <div class="portal">
+        <div class="p-name">IBPS</div>
+        <div class="p-desc">All public sector bank recruitment — PO, Clerk, SO, RRB.</div>
+        <a href="https://www.ibps.in" target="_blank" rel="noopener">ibps.in</a>
+      </div>
+      <div class="portal">
+        <div class="p-name">Karnataka Careers</div>
+        <div class="p-desc">Aggregator with an M.Com-specific filter — scraped daily by this bulletin.</div>
+        <a href="https://www.karnatakacareers.org/qualification/m-com/" target="_blank" rel="noopener">karnatakacareers.org</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="brand">Justin's Ad Center</div>
+    <div>Auto-updated daily via GitHub Actions &nbsp;·&nbsp; Always verify against the official notification before paying any fee or travelling for an interview</div>
+  </footer>
+
+</div>
+
+<script>
+  function fmtDate(iso) {
+    try {
+      const d = new Date(iso);
+      return d.toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    } catch (e) { return iso; }
+  }
+
+  function renderListing(item, { pinned = false } = {}) {
+    const org = item.organisation || item.source || 'Unknown source';
+    const post = item.post || 'See notification';
+    const qual = item.qualification ? `<p><strong>Qualification:</strong> ${item.qualification}</p>` : '';
+    const deadline = item.deadline ? `<p class="deadline">Deadline / status: ${item.deadline}</p>` : '';
+    const link = item.link || '#';
+    const tag = pinned ? '<span class="tag pinned">PINNED</span>' : (item.type === 'exam' ? '<span class="tag exam">EXAM</span>' : '');
+
+    return `
+      <div class="listing">
+        <div class="listing-top">
+          <div>
+            <div class="listing-org">${org}</div>
+            <div class="listing-title">${post} ${tag}</div>
+          </div>
+        </div>
+        <div class="listing-body">
+          ${qual}
+          ${deadline}
+        </div>
+        <div class="listing-links">
+          <a href="${link}" target="_blank" rel="noopener">Open source / apply link</a>
+        </div>
+      </div>`;
+  }
+
+  async function loadBulletin() {
+    const banner = document.getElementById('statusBanner');
+    const pinnedEl = document.getElementById('pinnedList');
+    const liveEl = document.getElementById('liveList');
+    const liveCount = document.getElementById('liveCount');
+    const editionDate = document.getElementById('edition-date');
+
+    try {
+      const res = await fetch('data/jobs.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+
+      editionDate.textContent = `EDITION — updated ${fmtDate(data.generated_at)}`;
+
+      const listings = data.listings || [];
+      const pinned = listings.filter(l => l.pinned);
+      const live = listings.filter(l => !l.pinned);
+
+      pinnedEl.innerHTML = pinned.length
+        ? pinned.map(l => renderListing(l, { pinned: true })).join('')
+        : '<p style="font-size:13px;color:var(--ink-soft);">No pinned entries yet — add them to data/pinned.json.</p>';
+
+      liveEl.innerHTML = live.length
+        ? live.map(l => renderListing(l)).join('')
+        : '<p style="font-size:13px;color:var(--ink-soft);">No live listings scraped yet — the workflow may not have run for the first time.</p>';
+
+      liveCount.textContent = `${live.length} listing(s) from last automated check`;
+
+    } catch (err) {
+      editionDate.textContent = 'EDITION — data unavailable';
+      banner.textContent = `Could not load data/jobs.json (${err.message}). If you just set this up, run the GitHub Action once from the Actions tab, or open this page via GitHub Pages rather than as a local file (fetch() needs http, not file://).`;
+      banner.classList.add('show', 'error');
+      pinnedEl.innerHTML = '';
+      liveEl.innerHTML = '';
+      liveCount.textContent = '—';
+    }
+  }
+
+  loadBulletin();
+</script>
+
+</body>
+</html>
